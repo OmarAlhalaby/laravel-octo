@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c390499e-80f7-4268-9f14-094ba40a4e76",
+		"_postman_id": "f57241ac-1ad5-4fb1-87a7-301b4435a8f2",
 		"name": "Movie API",
 		"description": "# Introduction\nThis API can be used to retrieve and modify data in a database containing information about movies shown in cinemas.\n\n# Authentication\nNo authentication is needed to use this API.\n\n# Rate limit\nThere is no limit to the number of requests that could be made to this API.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/genre?genre=comedy",
+					"raw": "http://127.0.0.1:8000/api/genre?genre=action",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -22,13 +22,13 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"genre"
 					],
 					"query": [
 						{
 							"key": "genre",
-							"value": "comedy",
-							"description": "specifies the genre for which movies are retrieved"
+							"value": "action"
 						}
 					]
 				},
@@ -102,7 +102,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/timeslot?theater_name=ABC movies&time_start=2020-04-04 00:00:00&time_end=2020-04-05 00:00:00",
+					"raw": "http://127.0.0.1:8000/api/timeslot?time_end=2020-04-05 00:00:00",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -112,18 +112,21 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"timeslot"
 					],
 					"query": [
 						{
 							"key": "theater_name",
 							"value": "ABC movies",
-							"description": "desired theater name to search for movie"
+							"description": "desired theater name to search for movie",
+							"disabled": true
 						},
 						{
 							"key": "time_start",
 							"value": "2020-04-04 00:00:00",
-							"description": "datetime (yyyy-mm-dd hh:mm:ss) specifying the begining of the search window"
+							"description": "datetime (yyyy-mm-dd hh:mm:ss) specifying the begining of the search window",
+							"disabled": true
 						},
 						{
 							"key": "time_end",
@@ -212,7 +215,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/specific_movie_theater?theater_name=ABC movies&d_date=2020-04-04",
+					"raw": "http://127.0.0.1:8000/api/specific_movie_theater?d_date=2020-04-04",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -222,13 +225,15 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"specific_movie_theater"
 					],
 					"query": [
 						{
 							"key": "theater_name",
 							"value": "ABC movies",
-							"description": "specifies desired theater to search movies for"
+							"description": "specifies desired theater to search movies for",
+							"disabled": true
 						},
 						{
 							"key": "d_date",
@@ -312,7 +317,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/search_performer?performer_name=Al Pacino",
+					"raw": "http://127.0.0.1:8000/api/search_performer?performer_name=Gemma Arterton&=",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -322,13 +327,18 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"search_performer"
 					],
 					"query": [
 						{
 							"key": "performer_name",
-							"value": "Al Pacino",
+							"value": "Gemma Arterton",
 							"description": "Name of the performer the user wishes to search"
+						},
+						{
+							"key": "",
+							"value": ""
 						}
 					]
 				},
@@ -430,7 +440,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/give_rating/",
+					"raw": "http://127.0.0.1:8000/api/give_rating/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -440,6 +450,7 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"give_rating",
 						""
 					]
@@ -533,7 +544,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/new_movies/?r_date=2020-01-01",
+					"raw": "http://127.0.0.1:8000/api/new_movies/?r_date=2020-01-01",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -543,6 +554,7 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"new_movies",
 						""
 					],
@@ -628,7 +640,7 @@
 					"formdata": [
 						{
 							"key": "title",
-							"value": "The King's Man",
+							"value": "The Irishman",
 							"description": "Title of the movie that we are going to add",
 							"type": "text"
 						},
@@ -657,19 +669,19 @@
 							"type": "text"
 						},
 						{
-							"key": "genre",
+							"key": "genre[]",
 							"value": "action",
 							"description": "First genre of the movie that we are adding",
 							"type": "text"
 						},
 						{
-							"key": "genre",
+							"key": "genre[]",
 							"value": "adventure",
 							"description": "Second genre of the movie that we are adding",
 							"type": "text"
 						},
 						{
-							"key": "genre",
+							"key": "genre[]",
 							"value": "comedy",
 							"description": "Third genre of the movie that we are adding",
 							"type": "text"
@@ -681,19 +693,19 @@
 							"type": "text"
 						},
 						{
-							"key": "performer",
+							"key": "performer[]",
 							"value": "Gemma Arterton",
 							"description": "Performer in the movie that we are adding",
 							"type": "text"
 						},
 						{
-							"key": "performer",
+							"key": "performer[]",
 							"value": "Matthew Goode",
 							"description": "Performer in the movie that we are adding",
 							"type": "text"
 						},
 						{
-							"key": "performer",
+							"key": "performer[]",
 							"value": "Ralph Fiennes",
 							"description": "Performer in the movie that we are adding",
 							"type": "text"
@@ -707,7 +719,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/add_movie/",
+					"raw": "http://127.0.0.1:8000/api/add_movie/?title=The King's Man&release=2020-09-18&length=98&description=As a collection of history's worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them.&mpaa_rating=PG-13&genre=ewr&director=Matthew Vaughn&performer[]=Gemma Arterton&language=English&performer[]=fsd&performer[]=fsd",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -717,8 +729,55 @@
 					],
 					"port": "8000",
 					"path": [
+						"api",
 						"add_movie",
 						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "The King's Man"
+						},
+						{
+							"key": "release",
+							"value": "2020-09-18"
+						},
+						{
+							"key": "length",
+							"value": "98"
+						},
+						{
+							"key": "description",
+							"value": "As a collection of history's worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them."
+						},
+						{
+							"key": "mpaa_rating",
+							"value": "PG-13"
+						},
+						{
+							"key": "genre",
+							"value": "ewr"
+						},
+						{
+							"key": "director",
+							"value": "Matthew Vaughn"
+						},
+						{
+							"key": "performer[]",
+							"value": "Gemma Arterton"
+						},
+						{
+							"key": "language",
+							"value": "English"
+						},
+						{
+							"key": "performer[]",
+							"value": "fsd"
+						},
+						{
+							"key": "performer[]",
+							"value": "fsd"
+						}
 					]
 				},
 				"description": "This endpoint can be used by movie studios and independent film creators to add their movies to the database. The entries that are created will be made visible to the users to access information regarding movies they can watch. The body should contain the fields listed below and some of the parameters can be multiple values (a list) and these special (multi) parameters are genre, director, performer, and language."
